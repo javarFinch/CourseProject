@@ -1,0 +1,54 @@
+  <table class="table table-bordered table-striped table-dark">
+    <thead>
+      <tr>
+        <th>Course ID</th>
+        <th>Course Title</th>
+        <th>CRN</th>
+        <th>Instructor</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let course of courses">
+        <td>{{course.id}}</td>
+        <td>{{course.title}}</td>
+        <td>{{course.crn}}</td>
+        <td>{{course.instructor.firstName}} {{course.instructor.lastName}}</td>
+        <td><input type="button" value="Delete" (click)='delete(course.id)' class="btn btn-danger btn-sm">
+          <input type="button" value="edit" class="btn btn-info btn-sm" (click)='edit(course.id)'></td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="text-center">
+  <button class="btn btn-primary btn-lg" (click)='addCourse()'>Add New Course</button>
+  </div>
+  <div class="row" *ngIf='showForm'>
+    <div class="container">
+      <div class="form-group text-center">
+        <label for="exampleInputEmail1">Title</label>
+        <input type="email" class="form-control col-6 offset-md-3 " [(ngModel)]='course.title' placeholder="Title">
+      </div>
+      <div class="form-group text-center">
+        <label for="exampleInputEmail1">CRN</label>
+        <input type="email" class="form-control col-6 offset-md-3" placeholder="CRN" [(ngModel)]='course.crn'>
+      </div>
+      <div class="form-group text-center">
+        <label for="exampleInputEmail1">Instructor First Name</label>
+        <input type="email" class="form-control col-6 offset-md-3" placeholder="Instructor First Name"
+          [(ngModel)]='course.instructor.firstName'>
+      </div>
+      <div class="form-group text-center">
+        <label for="exampleInputEmail1">Instructor Last Name</label>
+        <input type="email" class="form-control col-6 offset-md-3" placeholder="Instructor Last Name"
+          [(ngModel)]='course.instructor.lastName'>
+      </div>
+      <div class="form-group">
+        <div class="text-center">
+          <input type="button" class="btn btn-primary btn-block btn-lg" value="Save" (click)='save()'> 
+          <input type="button" class="btn btn-primary btn-block btn-lg" value="Cancel" (click)='cancel()'>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
